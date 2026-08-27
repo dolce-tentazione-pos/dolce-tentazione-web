@@ -56,6 +56,7 @@ function normalize(p,i){
  if(!fills.length && name.toLowerCase().includes("tres leches"))fills=["Fresa","Durazno","Nuez","Nutella"];
  return {id:p.id??"product-"+i,n:name,d:p.short_description??p.description??p.d??"",prices:{10:Number(p.price_10??p.precio_10??p.price10??p.prices?.[10]??0),20:Number(p.price_20??p.precio_20??p.price20??p.prices?.[20]??0),30:Number(p.price_30??p.precio_30??p.price30??p.prices?.[30]??0)},fills};
 }
+
 function render(){
  grid.innerHTML="";
  products.forEach((p,i)=>{
@@ -69,38 +70,58 @@ function render(){
   grid.appendChild(c);
  });
 }
+
 function money(n){return "$"+Number(n||0).toLocaleString("es-MX")}
 function update(){count.textContent=cart.length}
+
 function openCart(){
  const total=cart.reduce((a,x)=>a+Number(x.price||0),0);
- body.innerHTML=cart.length?cart.map(x=>'<div style="padding:12px 0;border-bottom:1px solid var(--line)"><b>'+x.name+'</b><br><span style="color:var(--muted);font-size:12px">'+(x.fill||"")+'</span><span style="float:right">'+(x.price?money(x.price):"Complemento")+'</span></div>').join(""):"<p style="color:var(--muted);margin-top:18px">Tu pedido está vacío.</p>";
+ body.innerHTML=cart.length?cart.map(x=>'<div style="padding:12px 0;border-bottom:1px solid var(--line)"><b>'+x.name+'</b><br><span style="color:var(--muted);font-size:12px">'+(x.fill||"")+'</span><span style="float:right">'+(x.price?money(x.price):"Complemento")+'</span></div>').join(""):'<p style="color:var(--muted);margin-top:18px">Tu pedido está vacío.</p>';
  if(cart.length)body.insertAdjacentHTML("beforeend",'<div style="margin-top:18px"><div class="field"><label>Fecha deseada</label><input type="date"></div><div class="field"><label>Horario</label><select><option>10:00–12:00</option><option>12:00–14:00</option><option>16:00–18:00</option></select></div><div class="field"><label>Código postal</label><input inputmode="numeric" placeholder="Ej. 10800"></div><div class="map"><div class="road"></div><div class="pin">📍</div></div><div class="notice">En la versión real, aquí se validará cobertura y envío.</div><div class="total"><span>Total estimado</span><span>'+money(total)+'</span></div><button type="button" class="btn pay" id="payBtn">Continuar a pago</button></div>');
  const pay=document.getElementById("payBtn");if(pay)pay.onclick=()=>{body.innerHTML='<div class="notice">Aquí aparecerá el Checkout de Clip con el importe total.</div><div style="border:1px solid var(--line);border-radius:12px;padding:20px;text-align:center"><div style="font-size:34px">💳</div><h3 style="font:25px Georgia,serif">Pago seguro</h3><p style="color:var(--muted)">El cliente será dirigido al pago de Clip y el pedido quedará registrado.</p><button type="button" class="btn pay">Pagar con Clip</button></div>'};
  modal.classList.add("open");
 }
+
 root.addEventListener("click",e=>{
  const go=e.target.closest("[data-go]");if(go){document.getElementById(go.dataset.go)?.scrollIntoView({behavior:"smooth"});return}
  const extra=e.target.closest("[data-add]");if(extra){cart.push({name:extra.dataset.add,price:0});update();openCart();return}
  const size=e.target.closest(".size");if(size&&!size.disabled){const c=size.closest(".card"),i=+c.dataset.index;selected[i]??={};selected[i].size=+size.dataset.size;c.querySelectorAll(".size").forEach(b=>b.classList.remove("selected"));size.classList.add("selected");return}
  const add=e.target.closest("[data-product]");if(add){const c=add.closest(".card"),i=+add.dataset.product,p=products[i],s=selected[i]||{},size=Number(s.size||10),fill=s.fill||c.querySelector("[data-fill]").value,price=Number(p.prices[size]||0);if(!price){alert("Selecciona un tamaño con precio.");return}if(p.fills.length&&!fill){alert("Selecciona un relleno antes de agregar el pastel.");return}cart.push({productId:p.id,name:p.n+" · "+size+" porciones",price,fill});update();openCart()}
 });
+
 root.addEventListener("change",e=>{const sel=e.target.closest("[data-fill]");if(!sel)return;const i=+sel.closest(".card").dataset.index;selected[i]??={};selected[i].fill=sel.value});
-document.getElementById("cartBtn").onclick=openCart;document.getElementById("close").onclick=()=>modal.classList.remove("open");
+document.getElementById("cartBtn").onclick=openCart;
+document.getElementById("close").onclick=()=>modal.classList.remove("open");
 document.querySelectorAll(".chip").forEach(x=>x.onclick=()=>{document.querySelectorAll(".chip").forEach(y=>y.classList.remove("active"));x.classList.add("active")});
 document.getElementById("customBtn").onclick=()=>alert("Aquí abriremos el formulario completo para solicitar un pastel personalizado.");
 document.getElementById("mainColor").oninput=e=>root.style.setProperty("--rose",e.target.value);
 document.getElementById("secondColor").oninput=e=>root.style.setProperty("--soft",e.target.value);
 document.getElementById("fontSelect").onchange=e=>document.getElementById("previewText").style.fontFamily=e.target.value;
+
 document.getElementById("testSupabase").onclick=async()=>{
  const url=document.getElementById("supabaseUrl").value.trim().replace(/\/$/,""),key=document.getElementById("supabaseAnon").value.trim(),status=document.getElementById("supabaseStatus");
- if(!url||!key){status.innerHTML="Falta URL y clave pública.";return}status.textContent="Conectando y leyendo productos…";
- try{const r=await fetch(url+"/rest/v1/products?select=*",{headers:{apikey:key,Authorization:"Bearer "+key}});
- if(!r.ok){status.innerHTML="❌ Supabase respondió con código <strong>"+r.status+"</strong>. Revisa SELECT/RLS de public.products.";return}
- const rows=await r.json();products=rows.map(normalize);render();
- status.innerHTML=rows.length?"✅ <strong>Conexión establecida.</strong> Se leyeron "+rows.length+" productos.":"✅ Conexión establecida, pero public.products está vacío.";
- }catch(e){console.error(e);status.textContent="❌ No se pudo conectar. Revisa URL, clave pública y conexión."}
+ if(!url||!key){status.innerHTML="Falta URL y clave pública.";return}
+ status.textContent="Conectando y leyendo productos…";
+ try{
+  const r=await fetch(url+"/rest/v1/products?select=*",{headers:{apikey:key,Authorization:"Bearer "+key}});
+  if(!r.ok){status.innerHTML="❌ Supabase respondió con código <strong>"+r.status+"</strong>. Revisa SELECT/RLS de public.products.";return}
+  const rows=await r.json();
+  if(rows.length){
+   products=rows.map(normalize);
+   render();
+   status.innerHTML="✅ <strong>Conexión establecida.</strong> Se leyeron "+rows.length+" productos.";
+  }else{
+   render();
+   status.innerHTML="⚠️ Conexión establecida, pero public.products está vacío. Se conserva Tres Leches local para no dejar la tienda vacía.";
+  }
+ }catch(e){
+  console.error(e);
+  status.textContent="❌ No se pudo conectar. Revisa URL, clave pública y conexión.";
+ }
 };
-render();update();
+
+render();
+update();
 })();
 </script>
 </body>
