@@ -5,123 +5,509 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Dolce Tentazione</title>
 <style>
-#dt-shop{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:#3f3437;background:linear-gradient(180deg,#fffaf9,#fff 55%);min-height:100%;--rose:#a86672;--soft:#f8e9eb;--line:#eadcdf;--dark:#403438;--muted:#75676b}
-#dt-shop *{box-sizing:border-box}#dt-shop button,#dt-shop input,#dt-shop select,#dt-shop textarea{font:inherit}
-.wrap{max-width:1100px;margin:auto;padding:0 22px}.top{display:flex;align-items:center;justify-content:space-between;padding:18px 0;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(255,250,249,.96);z-index:5}
-.logo{font:25px Georgia,serif}.logo small{display:block;font:10px Inter,sans-serif;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:2px}
-.nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.nav button,.ghost{border:0;background:transparent;padding:10px 12px;color:var(--dark);cursor:pointer}.primary{background:var(--rose)!important;color:white!important;border-radius:9px;padding:12px 17px!important}
-.hero{padding:58px 0 42px;display:grid;grid-template-columns:1.05fr .95fr;gap:38px;align-items:center}.eyebrow{text-transform:uppercase;letter-spacing:2px;font-size:11px;color:var(--rose);font-weight:700}
-.hero h1{font:46px/1.08 Georgia,serif;margin:12px 0 15px}.hero p{color:var(--muted);font-size:17px;line-height:1.65;max-width:520px}.hero-card{background:linear-gradient(145deg,#f8e7e9,#fff5ef);border-radius:24px;min-height:300px;display:flex;align-items:center;justify-content:center;color:#8b666e;font:29px Georgia,serif}
-.section{padding:34px 0 58px}.section h2{font:32px Georgia,serif;margin:0 0 7px}.sub{color:var(--muted);margin:0 0 25px}
-.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}.chip{border:1px solid var(--line);background:white;border-radius:999px;padding:9px 14px;cursor:pointer}.chip.active{background:var(--soft);border-color:#d9b7bd;color:#7d4d56}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 7px 24px rgba(70,45,50,.06)}.photo{height:180px;background:linear-gradient(135deg,#f5e0e3,#fff3e7);display:flex;align-items:center;justify-content:center;color:#936d74;font:21px Georgia,serif}.cardbody{padding:17px}.card h3{font:21px Georgia,serif;margin:0 0 7px}.card p{font-size:13px;color:var(--muted);line-height:1.5;min-height:39px}
-.sizes{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:14px 0}.size{border:1px solid var(--line);background:#fff;border-radius:8px;padding:9px 4px;text-align:center;font-size:12px;cursor:pointer}.size strong{display:block;font-size:13px}.size.selected{outline:2px solid var(--rose);background:var(--soft)}.size:disabled{opacity:.45;cursor:not-allowed}
-.select{width:100%;padding:11px;border:1px solid var(--line);border-radius:8px;background:white;margin-bottom:10px}.btn{width:100%;border:0;border-radius:9px;padding:12px;background:var(--rose);color:white;font-weight:700;cursor:pointer}
-.custom{background:#fbf2f2;border:1px solid var(--line);border-radius:18px;padding:28px;display:grid;grid-template-columns:1fr 1fr;gap:20px}.custom h3{font:27px Georgia,serif;margin:0 0 8px}.custom p{color:var(--muted);line-height:1.55}
-.field{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}.field label{font-size:12px;font-weight:700}.field input,.field textarea,.field select{padding:11px;border:1px solid var(--line);border-radius:8px;background:#fff}.field textarea{min-height:95px}.upload{border:1px dashed #cbaeb3;padding:15px;border-radius:9px;background:#fff;text-align:center;color:var(--muted)}
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.step{padding:18px;border:1px solid var(--line);border-radius:13px;background:white}.step b{display:block;margin-bottom:6px}.step span{font-size:12px;color:var(--muted)}
-.footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-size:13px}.modal{position:fixed;inset:0;background:rgba(40,30,33,.42);display:none;align-items:center;justify-content:center;padding:20px;z-index:20}.modal.open{display:flex}.panel{background:#fff;border-radius:18px;max-width:560px;width:100%;max-height:90%;overflow:auto;padding:24px}.panelhead{display:flex;justify-content:space-between;align-items:center}.close{border:0;background:#f5ecee;border-radius:50%;width:36px;height:36px;cursor:pointer}.map{height:190px;border-radius:12px;background:linear-gradient(145deg,#edf1ed,#f8f5ef);border:1px solid var(--line);position:relative;margin:10px 0}.road{position:absolute;height:2px;background:#d3d0c9;transform:rotate(-12deg);width:90%;left:5%;top:50%}.pin{position:absolute;left:53%;top:45%;font-size:29px}.total{display:flex;justify-content:space-between;font-weight:800;font-size:18px;padding:15px 0;border-top:1px solid var(--line);margin-top:8px}.pay{background:#333}.notice{padding:12px;background:#f8f0e7;border-radius:9px;font-size:13px;color:#6c5a4d;margin-bottom:12px}.cart-count{display:inline-flex;min-width:20px;height:20px;align-items:center;justify-content:center;background:#fff;border-radius:99px;color:var(--rose);font-size:11px;margin-left:4px}
-.adminbox{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:14px}.admin-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.swatch{width:100%;height:42px;border-radius:8px;border:1px solid var(--line)}
-@media(max-width:760px){.hero{grid-template-columns:1fr;padding-top:32px}.hero h1{font-size:37px}.grid{grid-template-columns:1fr}.custom{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr}.nav button:not(.primary){display:none}.hero-card{min-height:220px}.wrap{padding:0 16px}}
+:root{--rose:#a86672;--soft:#f8e9eb;--line:#eadcdf;--dark:#403438;--muted:#75676b}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#3f3437;background:linear-gradient(180deg,#fffaf9,#fff)}
+.wrap{max-width:1100px;margin:auto;padding:0 22px}.top{display:flex;align-items:center;justify-content:space-between;padding:18px 0;border-bottom:1px solid var(--line);position:sticky;top:0;background:#fffaf9f5;z-index:5}
+.logo{font:25px Georgia,serif}.logo small{display:block;font:10px system-ui;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+.nav{display:flex;gap:8px;flex-wrap:wrap}.nav button,.ghost{border:0;background:transparent;padding:10px 12px;color:var(--dark);cursor:pointer}.primary,.btn{background:var(--rose);color:#fff;border:0;border-radius:9px;padding:12px 17px;font-weight:700;cursor:pointer}
+.hero{padding:58px 0 42px;display:grid;grid-template-columns:1.05fr .95fr;gap:38px;align-items:center}.eyebrow{text-transform:uppercase;letter-spacing:2px;font-size:11px;color:var(--rose);font-weight:700}.hero h1{font:46px/1.08 Georgia,serif;margin:12px 0 15px}.hero p,.sub{color:var(--muted);line-height:1.6}.hero-card{background:linear-gradient(145deg,#f8e7e9,#fff5ef);border-radius:24px;min-height:300px;display:flex;align-items:center;justify-content:center;color:#8b666e;font:29px Georgia,serif}
+.section{padding:34px 0 58px}.section h2{font:32px Georgia,serif}.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 14px;cursor:pointer}.chip.active{background:var(--soft);color:#7d4d56}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 7px 24px #462d320f}.photo{height:180px;background:linear-gradient(135deg,#f5e0e3,#fff3e7);display:flex;align-items:center;justify-content:center;color:#936d74;font:21px Georgia,serif}.cardbody{padding:17px}.card h3{font:21px Georgia,serif}.sizes{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:14px 0}.size{border:1px solid var(--line);background:#fff;border-radius:8px;padding:9px 4px;text-align:center;cursor:pointer}.size.selected{outline:2px solid var(--rose);background:var(--soft)}
+.select{width:100%;padding:11px;border:1px solid var(--line);border-radius:8px;background:#fff;margin-bottom:10px}.custom{background:#fbf2f2;border:1px solid var(--line);border-radius:18px;padding:28px}.footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted)}
+.modal{position:fixed;inset:0;background:#281e216b;display:none;align-items:center;justify-content:center;padding:20px;z-index:20}.modal.open{display:flex}.panel{background:#fff;border-radius:18px;max-width:600px;width:100%;max-height:92%;overflow:auto;padding:24px}.panelhead{display:flex;justify-content:space-between;align-items:center}.close{border:0;background:#f5ecee;border-radius:50%;width:36px;height:36px;cursor:pointer}
+.cart-item{display:grid;grid-template-columns:1fr auto;gap:10px;padding:14px 0;border-bottom:1px solid var(--line)}.detail{color:var(--muted);font-size:12px;margin-top:4px}.actions{display:flex;align-items:center;gap:9px;margin-top:8px}.qty{display:flex;align-items:center;gap:9px}.qty button{width:29px;height:29px;border:1px solid var(--line);background:#fff;border-radius:7px}.remove{border:0;background:transparent;color:var(--rose);font-size:12px}.main-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}.secondary{background:#fff;color:var(--dark);border:1px solid var(--line)}button:disabled{opacity:.45;cursor:not-allowed}.payment-box{border:1px solid #eadde0;border-radius:18px;padding:22px;margin:18px 0;text-align:center;background:#fff}.payment-box h3{font:28px Georgia,serif;margin:8px 0 14px}input[type="date"]{font-family:inherit;background:#fff;min-height:48px}.total{display:flex;justify-content:space-between;font-weight:800;font-size:18px;padding:15px 0;border-top:1px solid var(--line);margin-top:8px}.notice{padding:12px;background:#f8f0e7;border-radius:9px;font-size:13px;color:#6c5a4d;margin-bottom:12px}
+@media(max-width:760px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.hero h1{font-size:37px}.main-actions{grid-template-columns:1fr}.wrap{padding:0 16px}}
+</style>
+<style>
+/* V4: panel de edición exclusivamente administrativo */
+.admin-panel,.admin-editor,.editor-panel,#adminEditor,#editorPanel,[data-admin-only]{
+  display:none !important;
+}
+
+/* V4: jerarquía visual */
+.hero{min-height:420px;display:grid;align-items:center}
+.hero img{width:100%;height:100%;object-fit:cover}
+.hero .hero-image,.hero-image{min-height:420px}
+.green,.area-verde,.map-placeholder,.placeholder-map{display:none !important;}
+
+/* V4: carrito visible y compacto */
+.cart-button,.cart-btn,#cartButton{
+  position:relative;
+  width:58px !important;
+  height:58px !important;
+  min-width:58px !important;
+  border-radius:50% !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  font-size:0 !important;
+}
+.cart-button::before,.cart-btn::before,#cartButton::before{
+  content:"🛒";
+  font-size:28px;
+  line-height:1;
+}
+.cart-button .count,.cart-btn .count,#cartButton .count{
+  position:absolute;
+  top:-3px;right:-3px;
+  min-width:22px;height:22px;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px !important;
+}
+
+/* V4: pasteles de línea — nombres alineados y fichas más reservadas */
+.line-products,.products-grid,.product-grid{
+  display:grid !important;
+  grid-template-columns:repeat(auto-fit,minmax(190px,1fr)) !important;
+  gap:16px !important;
+  align-items:start;
+}
+.line-products .product-card,.products-grid .product-card,.product-grid .product-card,
+.line-products article,.products-grid article,.product-grid article{
+  min-height:0 !important;
+  height:auto !important;
+  padding:14px !important;
+  border-radius:14px !important;
+}
+.line-products .product-card img,.products-grid .product-card img,.product-grid .product-card img{
+  height:150px !important;
+  object-fit:cover;
+  border-radius:10px;
+}
+.line-products h3,.products-grid h3,.product-grid h3{
+  min-height:44px;
+  margin:10px 0 6px !important;
+  font-size:20px !important;
+}
+.line-products .description,.products-grid .description,.product-grid .description{
+  font-size:14px !important;
+  line-height:1.35 !important;
+}
+
+@media (max-width:700px){
+  .line-products,.products-grid,.product-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:10px !important;
+  }
+  .line-products .product-card,.products-grid .product-card,.product-grid .product-card{
+    padding:10px !important;
+  }
+  .line-products .product-card img,.products-grid .product-card img,.product-grid .product-card img{
+    height:120px !important;
+  }
+  .line-products h3,.products-grid h3,.product-grid h3{
+    font-size:16px !important;
+    min-height:38px;
+  }
+}
+</style><style>
+/* V5 — Pasteles de línea: título arriba + ficha compacta debajo */
+#productGrid.grid{
+  display:grid !important;
+  grid-template-columns:repeat(5,minmax(0,1fr)) !important;
+  gap:18px !important;
+  align-items:start !important;
+}
+#productGrid .product-column{
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+}
+#productGrid .product-title{
+  margin:0 0 10px !important;
+  min-height:48px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  text-align:center;
+  font:22px/1.15 Georgia,serif !important;
+}
+#productGrid .card{
+  min-height:0 !important;
+  height:auto !important;
+  padding:0 !important;
+  overflow:hidden;
+  border-radius:14px !important;
+}
+#productGrid .photo{
+  height:145px !important;
+  min-height:145px !important;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:12px !important;
+  font:18px Georgia,serif;
+}
+#productGrid .cardbody{padding:12px !important;}
+#productGrid .cardbody .sub{
+  min-height:42px;
+  margin:0 0 10px !important;
+  font-size:13px !important;
+  line-height:1.3 !important;
+}
+#productGrid .sizes{
+  display:grid !important;
+  grid-template-columns:repeat(3,1fr) !important;
+  gap:5px !important;
+  margin-bottom:9px !important;
+}
+#productGrid .size{
+  padding:8px 3px !important;
+  font-size:12px !important;
+  line-height:1.2 !important;
+}
+#productGrid .select{
+  padding:9px !important;
+  font-size:13px !important;
+  margin-bottom:9px !important;
+}
+#productGrid .btn{
+  width:100%;
+  padding:9px 8px !important;
+  font-size:13px !important;
+}
+@media (max-width:1100px){
+  #productGrid.grid{grid-template-columns:repeat(3,minmax(0,1fr)) !important;}
+}
+@media (max-width:700px){
+  #productGrid.grid{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:10px !important;
+  }
+  #productGrid .product-title{
+    min-height:40px;
+    font-size:17px !important;
+  }
+  #productGrid .photo{
+    height:105px !important;
+    min-height:105px !important;
+    font-size:15px;
+  }
+  #productGrid .cardbody{padding:9px !important;}
+  #productGrid .cardbody .sub{
+    font-size:12px !important;
+    min-height:46px;
+  }
+  #productGrid .size{font-size:10px !important;padding:7px 2px !important;}
+  #productGrid .select{font-size:12px !important;padding:8px !important;}
+  #productGrid .btn{font-size:12px !important;padding:8px 5px !important;}
+}
+</style><style>
+/* V6 — Personalizado compacto: etiqueta izquierda / selección derecha */
+.custom-box{
+  max-width:700px !important;
+  margin:0 auto !important;
+  padding:22px 24px !important;
+}
+.custom-box h2{
+  margin:5px 0 4px !important;
+  font-size:30px !important;
+}
+.custom-intro{margin:0 0 14px !important}
+.custom-form{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:12px;
+  overflow:hidden;
+}
+.custom-row{
+  display:grid;
+  grid-template-columns:185px 1fr;
+  align-items:center;
+  min-height:54px;
+  border-bottom:1px solid var(--line);
+}
+.custom-row:last-child{border-bottom:0}
+.custom-row label{
+  padding:11px 14px;
+  font-weight:700;
+  font-size:14px;
+}
+.custom-row select,
+.custom-row input[type="file"]{
+  width:100%;
+  min-height:40px;
+  border:0;
+  border-left:1px solid var(--line);
+  background:#fff;
+  padding:8px 11px;
+  font:inherit;
+}
+.custom-row input[type="file"]{font-size:13px}
+.custom-wa{
+  display:block;
+  margin:14px auto 0 !important;
+  width:100%;
+  max-width:360px;
+}
+@media(max-width:700px){
+  .custom-box{padding:18px 14px !important}
+  .custom-box h2{font-size:25px !important}
+  .custom-row{grid-template-columns:125px 1fr;min-height:50px}
+  .custom-row label{font-size:13px;padding:9px}
+  .custom-row select,.custom-row input[type="file"]{font-size:13px;padding:7px}
+}
+</style>
+<style>
+/* V9 — Complementos: acceso compacto + pantalla completa de catálogo */
+.extras-launch{max-width:700px!important;margin:0 auto!important;padding:22px 24px!important;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 7px 24px #462d3208;cursor:pointer}
+.extras-launch-inner{display:grid;grid-template-columns:185px 1fr;align-items:center;gap:18px}
+.extras-launch-photo{height:120px;border-radius:12px;background:linear-gradient(135deg,#f5e0e3,#fff3e7);display:flex;align-items:center;justify-content:center;color:#936d74;font:18px Georgia,serif;text-align:center;padding:10px}
+.extras-launch h2{margin:0 0 5px!important;font:30px Georgia,serif!important}
+.extras-launch p{margin:0 0 12px!important}
+.extras-launch .btn{display:inline-block}
+.complements-overlay{position:fixed;inset:0;background:#fff;z-index:10000;display:none;overflow:auto}
+.complements-overlay.open{display:block}
+.complements-top{position:sticky;top:0;background:rgba(255,250,249,.97);border-bottom:1px solid var(--line);z-index:2}
+.complements-top-inner{max-width:1200px;margin:auto;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.complements-top h2{margin:0;font:34px Georgia,serif}
+.complements-top p{margin:4px 0 0;color:var(--muted)}
+.complements-close{border:1px solid var(--line);background:#fff;border-radius:50%;width:46px;height:46px;font-size:25px;cursor:pointer}
+.complements-body{max-width:1200px;margin:auto;padding:24px 22px 50px}
+.complement-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.complement-product{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden;box-shadow:0 5px 18px #462d320b;display:flex;flex-direction:column;min-width:0}
+.complement-photo{height:145px;background:linear-gradient(135deg,#f7e5e7,#fff3e7);display:flex;align-items:center;justify-content:center;color:#936d74;font:18px Georgia,serif;padding:10px;text-align:center}
+.complement-photo img{width:100%;height:100%;object-fit:cover;border-radius:8px}
+.complement-body{padding:12px;display:flex;flex-direction:column;flex:1}
+.complement-body h3{font:20px Georgia,serif;margin:0 0 5px}
+.complement-body p{font-size:12px;line-height:1.35;color:var(--muted);margin:0 0 8px;min-height:34px}
+.complement-price{font-weight:800;margin-bottom:9px}
+.complement-options{margin-top:auto}.complement-options label{font-size:11px;font-weight:700;display:block;margin-bottom:4px}.complement-options select{width:100%;padding:8px;border:1px solid var(--line);border-radius:8px;background:#fff;font:inherit;font-size:13px;margin-bottom:8px}.complement-body .btn{width:100%;padding:9px 8px;font-size:13px}
+@media(max-width:900px){.complement-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:650px){.extras-launch{padding:16px 14px!important}.extras-launch-inner{grid-template-columns:1fr}.extras-launch-photo{height:105px}.extras-launch h2{font-size:25px!important}.complements-top-inner{padding:14px}.complements-top h2{font-size:27px}.complements-body{padding:16px 12px 35px}.complement-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.complement-photo{height:105px;font-size:15px}.complement-body{padding:9px}.complement-body h3{font-size:17px}.complement-body p{font-size:11px}.complement-body .btn{font-size:12px;padding:8px 5px}}
 </style>
 </head>
 <body>
-<div id="dt-shop">
+<div id="shop">
 <div class="wrap top"><div class="logo">Dolce Tentazione<small>Pastelería y Repostería Personalizada</small></div>
-<div class="nav"><button type="button" data-go="products">Pasteles</button><button type="button" data-go="custom">Personalizados</button><button type="button" data-go="extras">Complementos</button><button type="button" id="cartBtn" class="primary">Mi pedido <span class="cart-count" id="count">0</span></button></div></div>
+<div class="nav"><button data-go="products">Pasteles</button><button data-go="custom">Personalizados</button><button data-go="extras">Complementos</button><button id="cartBtn" class="primary">Mi pedido <span id="count">0</span></button></div></div>
 <div class="wrap">
-<section class="hero"><div><div class="eyebrow">Hecho bajo pedido</div><h1>Haz de tu celebración algo dulce y especial.</h1><p>Pasteles de línea y diseños personalizados preparados para tu fecha especial, con entrega en nuestra zona de cobertura.</p><button type="button" class="primary" data-go="products">Ver pasteles</button> <button type="button" class="ghost" data-go="custom">Personaliza tu pastel →</button></div><div class="hero-card">Tu fotografía principal</div></section>
-<section id="products" class="section"><h2>Pasteles de línea</h2><p class="sub">Elige tamaño, selecciona tu relleno y agrega tu pastel al pedido.</p><div class="chips"><button type="button" class="chip active">Todos</button><button type="button" class="chip">Tres leches</button><button type="button" class="chip">Chocolate</button><button type="button" class="chip">Red Velvet</button><button type="button" class="chip">Zanahoria</button><button type="button" class="chip">Cheesecakes</button></div><div class="grid" id="productGrid"></div></section>
-<section id="custom" class="section"><div class="custom"><div><div class="eyebrow">Diseño especial</div><h3>¿Tienes una idea en mente?</h3><p>Cuéntanos qué necesitas y agrega una fotografía de referencia. Esta sección funciona diferente a los pasteles de línea.</p><button type="button" class="primary" id="customBtn">Solicitar cotización</button></div><div><div class="field"><label>¿Para cuántas personas?</label><select><option>10–12 personas</option><option>15–20 personas</option><option>25–30 personas</option><option>Más de 30</option></select></div><div class="field"><label>Cuéntanos tu idea</label><textarea placeholder="Temática, colores, ocasión, sabores..."></textarea></div><div class="upload">📷 Subir fotografía de inspiración</div></div></div></section>
-<section id="extras" class="section"><h2>Completa tu celebración</h2><p class="sub">Complementos que pueden agregarse al pedido.</p><div class="grid"><div class="card"><div class="photo">Cupcakes</div><div class="cardbody"><h3>Cupcakes decorados</h3><p>Complemento para tu celebración.</p><button type="button" class="btn" data-add="Cupcakes decorados">Agregar</button></div></div><div class="card"><div class="photo">Galletas</div><div class="cardbody"><h3>Galletas personalizadas</h3><p>Diseños especiales bajo pedido.</p><button type="button" class="btn" data-add="Galletas personalizadas">Agregar</button></div></div><div class="card"><div class="photo">Postres</div><div class="cardbody"><h3>Postres especiales</h3><p>Opciones para completar tu mesa.</p><button type="button" class="btn" data-add="Postres especiales">Agregar</button></div></div></div></section>
-<section class="section"><h2>Así funciona</h2><div class="steps"><div class="step"><b>1. Elige</b><span>Selecciona tu pastel y relleno.</span></div><div class="step"><b>2. Programa</b><span>Indica fecha y horario.</span></div><div class="step"><b>3. Ubica</b><span>CP + ubicación en mapa para calcular entrega.</span></div><div class="step"><b>4. Paga</b><span>Realiza el pago total en línea o por transferencia.</span></div></div></section>
-<section class="section" id="ediciones"><h2>Ediciones de la nueva web</h2><p class="sub">Esta página web es un proyecto independiente. El POS actual y funcional no forma parte de esta conexión y no se modifica.</p>
-<div class="adminbox"><div class="admin-grid"><div class="field"><label>Color principal</label><input class="swatch" type="color" value="#a86672" id="mainColor"></div><div class="field"><label>Color secundario</label><input class="swatch" type="color" value="#f8e9eb" id="secondColor"></div><div class="field"><label>Logo</label><input type="file" accept="image/*" id="logoFile"></div><div class="field"><label>Tipografía</label><select id="fontSelect"><option value="Georgia">Elegante · Georgia</option><option value="Arial">Limpia · Arial</option><option value="Trebuchet MS">Suave · Trebuchet MS</option><option value="Times New Roman">Clásica · Times New Roman</option></select></div></div><div style="margin-top:14px"><b>Vista previa</b><div id="previewText" style="font:26px Georgia,serif;margin-top:10px">Dolce Tentazione</div></div></div>
-<div class="adminbox"><b>Conexión de la nueva web</b><p style="margin:7px 0;color:var(--muted);font-size:13px">La nueva página web leerá los productos publicados desde Supabase. Primero probaremos con Tres Leches.</p><div class="field"><label>URL del proyecto Supabase</label><input id="supabaseUrl" value="https://owewxhidupeconfexsar.supabase.co"></div><div class="field"><label>Clave pública</label><input id="supabaseAnon" type="password" value="sb_publishable_v1o3bz3VS13bx9GKoH8KTQ_pvrm-wzG"></div><button type="button" class="btn" id="testSupabase">Probar conexión</button><div id="supabaseStatus" class="notice" style="margin-top:12px">Lista para probar la conexión.</div></div></section>
+<section class="hero"><div><div class="eyebrow">Hecho bajo pedido</div><h1>Haz de tu celebración algo dulce y especial.</h1><p>Pasteles de línea y diseños personalizados preparados para tu fecha especial.</p><button class="primary" data-go="products">Ver pasteles</button> <button class="ghost" data-go="custom">Personaliza tu pastel →</button></div><div class="hero-card">Tu fotografía principal</div></section>
+<section id="products" class="section"><h2>Pasteles de línea</h2><p class="sub">Elige tamaño, selecciona tu relleno y agrega tu pastel al pedido.</p><div class="chips"><button class="chip active">Todos</button><button class="chip">Tres leches</button><button class="chip">Chocolate</button><button class="chip">Red Velvet</button><button class="chip">Zanahoria</button><button class="chip">Cheesecakes</button></div><div class="grid" id="productGrid"></div></section>
+<section id="custom" class="section">
+<div class="custom custom-box">
+  <div class="eyebrow">DISEÑO ESPECIAL</div>
+  <h2>Personaliza tu pastel</h2>
+  <p class="sub custom-intro">Cuéntanos lo esencial para preparar tu cotización.</p>
+
+  <div class="custom-form">
+    <div class="custom-row">
+      <label>Tamaño</label>
+      <select id="customSize">
+        <option value="">Selecciona</option>
+        <option>10 porciones</option><option>15 porciones</option>
+        <option>20 porciones</option><option>30 porciones</option><option>Otro</option>
+      </select>
+    </div>
+    <div class="custom-row">
+      <label>Sabor</label>
+      <select id="customFlavor">
+        <option value="">Selecciona</option>
+        <option>Tres Leches</option><option>Triple Chocolate</option>
+        <option>Red Velvet</option><option>Zanahoria</option><option>Cheesecake</option><option>Otro</option>
+      </select>
+    </div>
+    <div class="custom-row">
+      <label>Relleno</label>
+      <select id="customFilling">
+        <option value="">Selecciona</option>
+        <option>Fresa</option><option>Durazno</option><option>Nuez</option>
+        <option>Nutella</option><option>Otro</option>
+      </select>
+    </div>
+    <div class="custom-row">
+      <label>Imagen de referencia</label>
+      <input id="customImage" type="file" accept="image/*">
+    </div>
+  </div>
+
+  <button class="primary custom-wa" id="customBtn">Solicitar cotización por WhatsApp</button>
+</div>
+</section>
+<section id="extras" class="section">
+<div class="extras-launch" id="openComplements" role="button" tabindex="0">
+  <div class="extras-launch-inner">
+    <div class="extras-launch-photo">Espacio para imagen de Complementos</div>
+    <div><div class="eyebrow">DETALLES PARA TU PEDIDO</div><h2>Complementos</h2><p class="sub">Agrega pequeños detalles para completar tu celebración.</p><button class="btn secondary" type="button">Ver complementos →</button></div>
+  </div>
+</div>
+</section>
 <footer class="footer">Dolce Tentazione · Pastelería y Repostería Personalizada · WhatsApp 55 3269 9350</footer>
 </div>
-<div class="modal" id="modal"><div class="panel"><div class="panelhead"><h2 style="font:27px Georgia,serif;margin:0">Tu pedido</h2><button type="button" class="close" id="close">×</button></div><div id="modalBody"></div></div></div>
+
+<div class="complements-overlay" id="complementsOverlay" aria-hidden="true">
+  <div class="complements-top"><div class="complements-top-inner"><div><h2>Complementos</h2><p>Elige los detalles que quieras agregar a tu pedido.</p></div><button class="complements-close" id="closeComplements" aria-label="Cerrar">×</button></div></div>
+  <div class="complements-body"><div class="complement-grid" id="complementGrid"></div></div>
+</div>
+<div class="modal" id="modal"><div class="panel"><div class="panelhead"><h2 style="font:27px Georgia,serif;margin:0">Tu pedido</h2><button class="close" id="close">×</button></div><div id="body"></div></div></div>
 </div>
 <script>
-(function(){
-"use strict";
-const root=document.getElementById("dt-shop"),grid=document.getElementById("productGrid"),modal=document.getElementById("modal"),body=document.getElementById("modalBody"),count=document.getElementById("count");
-let cart=[],products=[{id:"local-tres-leches",n:"Tres Leches",d:"Bizcocho húmedo y cremoso, ideal para celebraciones.",prices:{10:390,20:680,30:990},fills:["Fresa","Durazno","Nuez","Nutella"]}],selected={};
-
-function normalize(p,i){
- let fills=p.fills??p.fillings??p.rellenos??p.fill??[];
- if(typeof fills==="string"){try{fills=JSON.parse(fills)}catch(e){fills=fills.split(",").map(x=>x.trim()).filter(Boolean)}}
- if(!Array.isArray(fills))fills=[];
- const name=p.name??p.n??"Producto";
- if(!fills.length && name.toLowerCase().includes("tres leches"))fills=["Fresa","Durazno","Nuez","Nutella"];
- return {id:p.id??"product-"+i,n:name,d:p.short_description??p.description??p.d??"",prices:{10:Number(p.price_10??p.precio_10??p.price10??p.prices?.[10]??0),20:Number(p.price_20??p.precio_20??p.price20??p.prices?.[20]??0),30:Number(p.price_30??p.precio_30??p.price30??p.prices?.[30]??0)},fills};
+(()=>{"use strict";
+const grid=document.getElementById("productGrid"),modal=document.getElementById("modal"),body=document.getElementById("body"),count=document.getElementById("count");
+let cart=[],selected={},products=[{id:"tres-leches",n:"Tres Leches",d:"Bizcocho húmedo y cremoso, ideal para celebraciones.",prices:{10:390,20:680,30:990},fills:["Fresa","Durazno","Nuez","Nutella"]}];
+const money=n=>"$"+Number(n||0).toLocaleString("es-MX");
+function update(){count.textContent=cart.reduce((a,x)=>a+x.qty,0)}
+function render(){grid.innerHTML="";products.forEach((p,i)=>{let s=selected[i]||{size:10,fill:""};selected[i]=s;let col=document.createElement("div");col.className="product-column";col.dataset.i=i;let title=document.createElement("h3");title.className="product-title";title.textContent=p.n;let c=document.createElement("div");c.className="card";c.dataset.i=i;c.innerHTML='<div class="photo">'+p.n+'</div><div class="cardbody"><p class="sub">'+p.d+'</p><div class="sizes"></div><select class="select" data-fill><option value="">Selecciona relleno</option></select><button class="btn" data-add="'+i+'">Agregar al pedido</button></div>';[10,20,30].forEach(n=>{let btn=document.createElement("button");btn.className="size"+(s.size===n?" selected":"");btn.dataset.size=n;btn.innerHTML="<b>"+n+"</b> porciones<br>"+money(p.prices[n]);c.querySelector(".sizes").appendChild(btn)});p.fills.forEach(f=>{let o=document.createElement("option");o.value=f;o.textContent=f;if(f===s.fill)o.selected=true;c.querySelector("[data-fill]").appendChild(o)});col.appendChild(title);col.appendChild(c);grid.appendChild(col)})}
+function add(i){let c=grid.querySelector('[data-i="'+i+'"]'),p=products[i],s=selected[i]||{},size=Number(s.size||10),fill=s.fill||c.querySelector("[data-fill]").value;if(!fill)return alert("Selecciona un relleno antes de agregar el pastel.");let key=p.id+"|"+size+"|"+fill,x=cart.find(a=>a.key===key);if(x)x.qty++;else cart.push({key,name:p.n,size,fill,price:p.prices[size],qty:1});update();alert("Producto agregado. Puedes seguir comprando.");}
+function renderCart(){
+ if(!cart.length){body.innerHTML='<p class="sub">Tu pedido está vacío.</p><button class="btn" id="shopMore">Elegir productos</button>';return}
+ let t=cart.reduce((a,x)=>a+x.price*x.qty,0);
+ body.innerHTML=cart.map((x,i)=>{
+   const isComp=x.type==="complement";
+   const title=isComp ? x.name+(x.option?" · Número "+x.option:"") : x.name+" · "+x.size+" porciones";
+   const detail=isComp ? money(x.price)+" c/u" : (x.fill+" · "+money(x.price)+" c/u");
+   return '<div class="cart-item"><div><b>'+title+'</b><div class="detail">'+detail+'</div><div class="actions"><div class="qty"><button data-minus="'+i+'">−</button><b>'+x.qty+'</b><button data-plus="'+i+'">+</button></div><button class="remove" data-remove="'+i+'">Eliminar</button></div></div><b>'+money(x.price*x.qty)+'</b></div>';
+ }).join("")+'<div class="total"><span>Total</span><span>'+money(t)+'</span></div><div class="main-actions"><button class="btn secondary" id="shopMore">Seguir comprando</button><button class="btn" id="delivery">Continuar</button></div>'
 }
-
-function render(){
- grid.innerHTML="";
- products.forEach((p,i)=>{
-  const s=selected[i]||{size:[10,20,30].find(x=>p.prices[x]>0)||10,fill:""};selected[i]=s;
-  const c=document.createElement("div");c.className="card";c.dataset.index=i;
-  c.innerHTML='<div class="photo"></div><div class="cardbody"><h3></h3><p></p><div class="sizes"></div><select class="select" data-fill><option value="">'+(p.fills.length?"Selecciona relleno":"Relleno por confirmar")+'</option></select><button type="button" class="btn" data-product="'+i+'">Agregar al pedido</button></div>';
-  c.querySelector(".photo").textContent=p.n;c.querySelector("h3").textContent=p.n;c.querySelector("p").textContent=p.d;
-  const sizes=c.querySelector(".sizes");
-  [10,20,30].forEach(n=>{const b=document.createElement("button");b.type="button";b.className="size"+(s.size===n?" selected":"");b.dataset.size=n;const price=Number(p.prices[n]||0);b.disabled=!price;b.innerHTML="<strong>"+n+"</strong> porciones<br>"+(price?"$"+price:"Consultar");sizes.appendChild(b)});
-  const sel=c.querySelector("[data-fill]");p.fills.forEach(f=>{const o=document.createElement("option");o.value=f;o.textContent=f;if(s.fill===f)o.selected=true;sel.appendChild(o)});
-  grid.appendChild(c);
- });
-}
-
-function money(n){return "$"+Number(n||0).toLocaleString("es-MX")}
-function update(){count.textContent=cart.length}
-
-function openCart(){
- const total=cart.reduce((a,x)=>a+Number(x.price||0),0);
- body.innerHTML=cart.length?cart.map(x=>'<div style="padding:12px 0;border-bottom:1px solid var(--line)"><b>'+x.name+'</b><br><span style="color:var(--muted);font-size:12px">'+(x.fill||"")+'</span><span style="float:right">'+(x.price?money(x.price):"Complemento")+'</span></div>').join(""):'<p style="color:var(--muted);margin-top:18px">Tu pedido está vacío.</p>';
- if(cart.length)body.insertAdjacentHTML("beforeend",'<div style="margin-top:18px"><div class="field"><label>Fecha deseada</label><input type="date"></div><div class="field"><label>Horario</label><select><option>10:00–12:00</option><option>12:00–14:00</option><option>16:00–18:00</option></select></div><div class="field"><label>Código postal</label><input inputmode="numeric" placeholder="Ej. 10800"></div><div class="map"><div class="road"></div><div class="pin">📍</div></div><div class="notice">En la versión real, aquí se validará cobertura y envío.</div><div class="total"><span>Total estimado</span><span>'+money(total)+'</span></div><button type="button" class="btn pay" id="payBtn">Continuar a pago</button></div>');
- const pay=document.getElementById("payBtn");if(pay)pay.onclick=()=>{body.innerHTML='<div class="notice">Aquí aparecerá el Checkout de Clip con el importe total.</div><div style="border:1px solid var(--line);border-radius:12px;padding:20px;text-align:center"><div style="font-size:34px">💳</div><h3 style="font:25px Georgia,serif">Pago seguro</h3><p style="color:var(--muted)">El cliente será dirigido al pago de Clip y el pedido quedará registrado.</p><button type="button" class="btn pay">Pagar con Clip</button></div>'};
- modal.classList.add("open");
-}
-
-root.addEventListener("click",e=>{
- const go=e.target.closest("[data-go]");if(go){document.getElementById(go.dataset.go)?.scrollIntoView({behavior:"smooth"});return}
- const extra=e.target.closest("[data-add]");if(extra){cart.push({name:extra.dataset.add,price:0});update();openCart();return}
- const size=e.target.closest(".size");if(size&&!size.disabled){const c=size.closest(".card"),i=+c.dataset.index;selected[i]??={};selected[i].size=+size.dataset.size;c.querySelectorAll(".size").forEach(b=>b.classList.remove("selected"));size.classList.add("selected");return}
- const add=e.target.closest("[data-product]");if(add){const c=add.closest(".card"),i=+add.dataset.product,p=products[i],s=selected[i]||{},size=Number(s.size||10),fill=s.fill||c.querySelector("[data-fill]").value,price=Number(p.prices[size]||0);if(!price){alert("Selecciona un tamaño con precio.");return}if(p.fills.length&&!fill){alert("Selecciona un relleno antes de agregar el pastel.");return}cart.push({productId:p.id,name:p.n+" · "+size+" porciones",price,fill});update();openCart()}
+function openCart(){renderCart();modal.classList.add("open")}
+document.getElementById("cartBtn").onclick=openCart;document.getElementById("close").onclick=()=>modal.classList.remove("open");
+document.getElementById("shop").addEventListener("click",e=>{let g=e.target.closest("[data-go]");if(g){document.getElementById(g.dataset.go)?.scrollIntoView({behavior:"smooth"});return}let s=e.target.closest(".size");if(s){let c=s.closest(".card"),i=+c.dataset.i;selected[i]??={};selected[i].size=+s.dataset.size;c.querySelectorAll(".size").forEach(b=>b.classList.remove("selected"));s.classList.add("selected")}let a=e.target.closest("[data-add]");if(a)add(+a.dataset.add)});
+document.getElementById("shop").addEventListener("change",e=>{let s=e.target.closest("[data-fill]");if(s){let i=+s.closest(".card").dataset.i;selected[i]??={};selected[i].fill=s.value}});
+modal.addEventListener("click",e=>{
+if(e.target===modal)modal.classList.remove("open");
+if(e.target.id==="shopMore"){modal.classList.remove("open");document.getElementById("products").scrollIntoView({behavior:"smooth"});}
+let m=e.target.closest("[data-minus]");
+if(m){let i=+m.dataset.minus;if(--cart[i].qty<1)cart.splice(i,1);update();renderCart()}
+let p=e.target.closest("[data-plus]");
+if(p){cart[+p.dataset.plus].qty++;update();renderCart()}
+let r=e.target.closest("[data-remove]");
+if(r){cart.splice(+r.dataset.remove,1);update();renderCart()}
+if(e.target.id==="delivery")renderDelivery();
+if(e.target.id==="back")renderCart();
 });
 
-root.addEventListener("change",e=>{const sel=e.target.closest("[data-fill]");if(!sel)return;const i=+sel.closest(".card").dataset.index;selected[i]??={};selected[i].fill=sel.value});
-document.getElementById("cartBtn").onclick=openCart;
-document.getElementById("close").onclick=()=>modal.classList.remove("open");
-document.querySelectorAll(".chip").forEach(x=>x.onclick=()=>{document.querySelectorAll(".chip").forEach(y=>y.classList.remove("active"));x.classList.add("active")});
-document.getElementById("customBtn").onclick=()=>alert("Aquí abriremos el formulario completo para solicitar un pastel personalizado.");
-document.getElementById("mainColor").oninput=e=>root.style.setProperty("--rose",e.target.value);
-document.getElementById("secondColor").oninput=e=>root.style.setProperty("--soft",e.target.value);
-document.getElementById("fontSelect").onchange=e=>document.getElementById("previewText").style.fontFamily=e.target.value;
-
-document.getElementById("testSupabase").onclick=async()=>{
- const url=document.getElementById("supabaseUrl").value.trim().replace(/\/$/,""),key=document.getElementById("supabaseAnon").value.trim(),status=document.getElementById("supabaseStatus");
- if(!url||!key){status.innerHTML="Falta URL y clave pública.";return}
- status.textContent="Conectando y leyendo productos…";
- try{
-  const r=await fetch(url+"/rest/v1/products?select=*",{headers:{apikey:key,Authorization:"Bearer "+key}});
-  if(!r.ok){status.innerHTML="❌ Supabase respondió con código <strong>"+r.status+"</strong>. Revisa SELECT/RLS de public.products.";return}
-  const rows=await r.json();
-  if(rows.length){
-   products=rows.map(normalize);
-   render();
-   status.innerHTML="✅ <strong>Conexión establecida.</strong> Se leyeron "+rows.length+" productos.";
-  }else{
-   render();
-   status.innerHTML="⚠️ Conexión establecida, pero public.products está vacío. Se conserva Tres Leches local para no dejar la tienda vacía.";
-  }
- }catch(e){
-  console.error(e);
-  status.textContent="❌ No se pudo conectar. Revisa URL, clave pública y conexión.";
+function mxDate(d){
+ const y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,"0"),day=String(d.getDate()).padStart(2,"0");
+ return y+"-"+m+"-"+day;
+}
+function prettyDate(v){
+ const [y,m,d]=v.split("-");
+ return new Date(Number(y),Number(m)-1,Number(d)).toLocaleDateString("es-MX",{weekday:"long",day:"numeric",month:"long"});
+}
+const demoOrders={};
+function slotsFor(date){
+ const occupied=demoOrders[date]||{};
+ return ["10:00–12:00","12:00–14:00","14:00–16:00","16:00–18:00"].map(name=>{
+   const count=occupied[name]||0;
+   return {name,count,available:count<2};
+ });
+}
+function dayCount(date){
+ return Object.values(demoOrders[date]||{}).reduce((a,b)=>a+b,0);
+}
+function nextAvailableDate(){
+ const d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate()+2);return d;
+}
+function buildDates(){
+ const min=nextAvailableDate(),out=[];
+ for(let i=0;i<45;i++){
+   const d=new Date(min);d.setDate(min.getDate()+i);
+   const v=mxDate(d);
+   if(dayCount(v)<6)out.push({v,total:dayCount(v)});
  }
+ return out;
+}
+function renderDelivery(){
+ const dates=buildDates(),t=cart.reduce((a,x)=>a+x.price*x.qty,0);
+ body.innerHTML=`
+ 
+ <label style="display:block;font-weight:700;margin:14px 0 7px">Fecha deseada</label>
+ <input class="select" id="dateSelect" type="date" min="${mxDate(nextAvailableDate())}">
+ <label style="display:block;font-weight:700;margin:14px 0 7px">Horario</label>
+ <select class="select" id="slotSelect" disabled><option value="">Primero selecciona una fecha</option></select>
+ <label style="display:block;font-weight:700;margin:14px 0 7px">Código postal</label>
+ <input class="select" id="cp" inputmode="numeric" maxlength="5" placeholder="Ej. 10800">
+ <div class="notice" id="availabilityMsg">Selecciona fecha y horario para continuar.</div>
+ <div class="total"><span>Total del pedido</span><span>${money(t)}</span></div>
+ <div class="main-actions"><button class="btn secondary" id="back">← Revisar pedido</button><button class="btn" id="toPay" disabled>Continuar a pago</button></div>`;
+ const ds=document.getElementById("dateSelect"),ss=document.getElementById("slotSelect"),cp=document.getElementById("cp"),toPay=document.getElementById("toPay"),msg=document.getElementById("availabilityMsg");
+ function validate(){
+   if(!ds.value){msg.textContent="Selecciona fecha y horario para continuar.";toPay.disabled=true;return}
+   const total=dayCount(ds.value),selected=slotsFor(ds.value).find(x=>x.name===ss.value);
+   if(total>=6){msg.textContent="Esta fecha no está disponible. Selecciona otra.";toPay.disabled=true;return}
+   if(selected&&!selected.available){msg.textContent="Este horario no está disponible. Selecciona otro.";toPay.disabled=true;return}
+   const ok=!!ss.value&&/^\d{5}$/.test(cp.value);
+   toPay.disabled=!ok;
+   msg.textContent=ok?"Datos de entrega listos.":"Completa horario y código postal.";
+ }
+ ds.onchange=()=>{
+   ss.disabled=!ds.value;
+   const options=ds.value
+     ? slotsFor(ds.value).filter(x=>x.available)
+     : [];
+   ss.innerHTML=ds.value
+     ? '<option value="">Selecciona un horario</option>'+options.map(x=>`<option value="${x.name}">${x.name}</option>`).join("")
+     : '<option value="">Selecciona primero una fecha</option>';
+   validate();
+ };
+ ss.onchange=validate;cp.oninput=validate;
+ toPay.onclick=()=>renderPayment(ds.value,ss.value,cp.value,t);
+}
+function renderPayment(date,slot,cp,t){
+ body.innerHTML=`<div class="notice"><b>Pedido listo para pago.</b><br>${prettyDate(date)} · ${slot}<br>CP ${cp}</div><div class="total"><span>Total estimado</span><span>${money(t)}</span></div><div class="payment-box"><h3>Pago seguro</h3><p class="sub">El cliente será dirigido al pago de Clip y el pedido quedará registrado.</p><button class="btn" id="pay">Pagar con Clip</button></div><div class="main-actions"><button class="btn secondary" id="backDelivery">← Cambiar entrega</button></div>`;
+ document.getElementById("backDelivery").onclick=()=>renderDelivery();
+ document.getElementById("pay").onclick=()=>renderClip(date,slot,cp,t);
+}
+function renderClip(date,slot,cp,t){
+ body.innerHTML=`<div class="notice"><b>Checkout de Clip</b><br>Importe a pagar: ${money(t)}<br>${prettyDate(date)} · ${slot} · CP ${cp}</div><div class="payment-box"><h3>Pago con Clip</h3><p class="sub">Esta pantalla queda preparada para integrar el checkout real de Clip.</p><button class="btn" id="clipLink">Abrir pago de Clip</button></div><div class="main-actions"><button class="btn secondary" id="backPay">← Volver</button></div>`;
+ document.getElementById("backPay").onclick=()=>renderPayment(date,slot,cp,t);
+ document.getElementById("clipLink").onclick=()=>alert("Aquí se conectará el checkout real de Clip.");
+}
+document.querySelectorAll(".chip").forEach(x=>x.onclick=()=>{document.querySelectorAll(".chip").forEach(y=>y.classList.remove("active"));x.classList.add("active")});
+document.getElementById("customBtn").onclick=()=>alert("Formulario de cotización en la siguiente etapa.");
+window.addComplement=function(item){
+  const key=item.id+"|"+(item.option||"");
+  const existing=cart.find(x=>x.key===key);
+  if(existing) existing.qty++;
+  else cart.push({key,name:item.name,price:item.price,qty:1,type:"complement",option:item.option||""});
+  update();
 };
+render();update();
+})()
+</script>
 
-render();
-update();
+<script>
+(function(){
+  const btn=document.getElementById("customBtn");
+  if(!btn) return;
+  btn.addEventListener("click",function(){
+    const size=document.getElementById("customSize")?.value||"No indicado";
+    const flavor=document.getElementById("customFlavor")?.value||"No indicado";
+    const filling=document.getElementById("customFilling")?.value||"No indicado";
+    const msg=`Hola Dolce Tentazione, me gustaría solicitar una cotización para un pastel personalizado.%0A%0ATamaño: ${encodeURIComponent(size)}%0ASabor: ${encodeURIComponent(flavor)}%0ARelleno: ${encodeURIComponent(filling)}%0A%0AEn breve puedo enviar la imagen de referencia por este medio.`;
+    window.open("https://wa.me/525532699350?text="+msg,"_blank");
+  });
+})();
+</script>
+
+<script>
+(function(){
+ const overlay=document.getElementById('complementsOverlay');
+ const open=document.getElementById('openComplements');
+ const close=document.getElementById('closeComplements');
+ const grid=document.getElementById('complementGrid');
+ const catalog=[{id:'vela-numero',name:'Velas de número',description:'Elige el número que necesites para tu pastel.',price:35,options:['0','1','2','3','4','5','6','7','8','9'],optionLabel:'Número',image:''}];
+ function money(n){return '$'+Number(n||0).toLocaleString('es-MX')}
+ function renderCatalog(){grid.innerHTML=catalog.slice(0,30).map((p,i)=>{const photo=p.image?'<img src="'+p.image+'" alt="'+p.name+'">':'Espacio para foto del producto';const options=p.options?.length?'<div class="complement-options"><label>'+ (p.optionLabel||'Opción') +'</label><select data-opt="'+i+'"><option value="">Selecciona</option>'+p.options.map(o=>'<option value="'+o+'">'+o+'</option>').join('')+'</select></div>':'';return '<article class="complement-product"><div class="complement-photo">'+photo+'</div><div class="complement-body"><h3>'+p.name+'</h3><p>'+p.description+'</p><div class="complement-price">'+money(p.price)+' pieza</div>'+options+'<button class="btn" data-complement-add="'+i+'">Agregar al pedido</button></div></article>'}).join('')}
+ function show(){renderCatalog();overlay.classList.add('open');overlay.setAttribute('aria-hidden','false');document.body.style.overflow='hidden'}
+ function hide(){overlay.classList.remove('open');overlay.setAttribute('aria-hidden','true');document.body.style.overflow=''}
+ open.addEventListener('click',show);open.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();show()}});close.addEventListener('click',hide);
+ document.querySelector('[data-go="extras"]').addEventListener('click',e=>{e.preventDefault();show()});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&overlay.classList.contains('open'))hide()});
+ grid.addEventListener('click',e=>{
+   const b=e.target.closest('[data-complement-add]');
+   if(!b)return;
+   const i=Number(b.dataset.complementAdd),p=catalog[i],select=grid.querySelector('[data-opt="'+i+'"]'),option=select?select.value:'';
+   if(p.options?.length && !option){alert('Selecciona un número.');return}
+   window.addComplement({id:p.id,name:p.name,price:p.price,option});
+   b.textContent='Agregado ✓';
+   const toast=document.createElement('div');
+   toast.textContent='Complemento agregado a tu pedido ✓';
+   toast.style.cssText='position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:11000;background:#432b33;color:#fff;padding:12px 18px;border-radius:999px;font-weight:700;font-size:14px;box-shadow:0 8px 24px #0002';
+   document.body.appendChild(toast);
+   setTimeout(()=>{b.textContent='Agregar al pedido';toast.remove()},1200);
+ });
 })();
 </script>
 </body>
